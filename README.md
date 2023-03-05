@@ -41,6 +41,5 @@ For node classification with online evaluation on HGB:
 
 And we provide our test files on DBLP-HGB and IMDB-HGB in 'HGB-output/'.
 
-For reproducing our results in the paper, you need to tune the values of key parameters like 'num-gnns','num-layers','len-seq', 'dropout', 'temperature' and 'beta'  in your experimental environment.
-
+For reproducing our results in the paper and applying HINormer on other datasets, you need to tune the values of key parameters like 'num-gnns','num-layers','len-seq', 'dropout', 'temperature' and 'beta'  in your experimental environment. 
 ## 4. Citation
