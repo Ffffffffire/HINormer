@@ -226,7 +226,7 @@ if __name__ == '__main__':
                     '4 - only term features (id vec for others);' +
                     '5 - only term features (zero vec for others).')
     ap.add_argument('--device', type=int, default=0)
-    ap.add_argument('--hidden-dim', type=int, default=32,
+    ap.add_argument('--hidden-dim', type=int, default=256,
                     help='Dimension of the node hidden state. Default is 32.')
     ap.add_argument('--dataset', type=str, default = 'DBLP', help='DBLP, IMDB, Freebase, AMiner, DBLP-HGB, IMDB-HGB')
     ap.add_argument('--num-heads', type=int, default=2,
@@ -235,7 +235,7 @@ if __name__ == '__main__':
     ap.add_argument('--patience', type=int, default=50, help='Patience.')
     ap.add_argument('--repeat', type=int, default=5, help='Repeat the training and testing for N times. Default is 1.')
     ap.add_argument('--num-layers', type=int, default=2, help='The number of layers of HINormer layer')
-    ap.add_argument('--num-gnns', type=int, default=2, help='The number of layers of both structural and heterogeneous encoder')
+    ap.add_argument('--num-gnns', type=int, default=4, help='The number of layers of both structural and heterogeneous encoder')
     ap.add_argument('--lr', type=float, default=1e-4)
     ap.add_argument('--dropout', type=float, default=0.5)
     ap.add_argument('--weight-decay', type=float, default=0)
