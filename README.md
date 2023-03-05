@@ -37,7 +37,7 @@ For node classification with offline evaluation:
 For node classification with online evaluation on HGB:
 
 - python run.py --dataset DBLP-HGB --hidden-dim 256 --num-gnns 4 --len-seq 50 --num-heads 2 --num-layers 2 --dropout 0.5 --lr 1e-4 --beta 0.1 --temperature 0.1 --l2norm True --mode 1
-- python run.py --dataset IMDB-HGB --hidden-dim 256 --num-gnns 4 --len-seq 150 --num-heads 2 --num-layers 2 --dropout 0.5 --lr 1e-4 --beta 0.5 --temperature 1 --l2norm True --mode 1
+- python run_multi.py --dataset IMDB-HGB --hidden-dim 256 --num-gnns 4 --len-seq 150 --num-heads 2 --num-layers 2 --dropout 0.5 --lr 1e-4 --beta 0.5 --temperature 1 --l2norm True --mode 1
 
 And we provide our test files on DBLP-HGB and IMDB-HGB in 'HGB-output/'.
 
