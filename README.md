@@ -31,8 +31,8 @@ For node classification with offline evaluation:
 
 - python run.py --dataset DBLP --len-seq 50 --dropout 0.5 --beta 0.1 --temperature 2
 - python run_multi.py --dataset IMDB --len-seq 20 --beta 0.1 --temperature 0.1
-- python run.py --dataset Freebase --num-gnns 3 --len-seq 30 --num-layers 3 --dropout 0 --beta 1 --temperature 0.2
-- python run.py --dataset AMiner --num-gnns 3 --len-seq 100 --beta 0.1 --temperature 0.1
+- python run.py --dataset Freebase --num-gnns 3 --len-seq 30 --num-layers 3 --dropout 0 --beta 0.5 --temperature 0.2
+- python run.py --dataset AMiner --len-seq 80 --num-gnns 3 --num-layers 4 --temperature 0.5
 
 For node classification with online evaluation on HGB:
 
