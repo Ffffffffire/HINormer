@@ -122,7 +122,6 @@ def run_model_DBLP(args):
 
     node_type = [i for i, z in zip(range(len(node_cnt)), node_cnt) for x in range(z)]
 
-    g = dgl.add_self_loop(g)
     g = g.to(device)
     train_seq = node_seq[train_idx]
     val_seq = node_seq[val_idx]
