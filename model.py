@@ -111,7 +111,7 @@ class AGTLayer(nn.Module):
         self.head_dim = self.embeddings_dimension // self.nheads
 
 
-        self.leaky = nn.LeakyReLU(0.2)
+        self.leaky = nn.LeakyReLU(0.01)
 
         self.temper = temper
 
@@ -179,26 +179,21 @@ class HINormer(nn.Module):
         self.num_gnns = num_gnns
         self.nheads = nheads
         self.fc_list = nn.ModuleList([nn.Linear(in_dim, embeddings_dimension) for in_dim in input_dimensions])
-        for fc in self.fc_list:
-            nn.init.xavier_normal_(fc.weight, gain=1.414)
 
         self.dropout = dropout
         self.GCNLayers = torch.nn.ModuleList()
         self.RELayers = torch.nn.ModuleList()
         self.GTLayers = torch.nn.ModuleList()
-        self.Dropouts = torch.nn.ModuleList()
         for layer in range(self.num_gnns):
             self.GCNLayers.append(GraphConv(
-                self.embeddings_dimension, self.embeddings_dimension, activation=F.elu, weight=True))
-            self.RELayers.append(REConv(num_type, num_type, activation=F.elu, num_type=num_type))
-            self.Dropouts.append(nn.Dropout(self.dropout))
+                self.embeddings_dimension, self.embeddings_dimension, activation=F.relu))
+            self.RELayers.append(REConv(num_type, num_type, activation=F.relu, num_type=num_type))
         for layer in range(self.num_layers):
             self.GTLayers.append(
                 AGTLayer(self.embeddings_dimension, self.nheads, self.dropout, self.dropout, temper=temper, rl=True, rl_dim=num_type, beta=beta))
-        
+        self.Drop = nn.Dropout(self.dropout)
 
         self.Prediction = nn.Linear(embeddings_dimension, num_class)
-        nn.init.xavier_normal_(self.Prediction.weight, gain=1.414)
 
     def forward(self, features_list, seqs, type_emb, node_type, norm=False):
         h = []
@@ -208,7 +203,7 @@ class HINormer(nn.Module):
         r = type_emb[node_type]
         for layer in range(self.num_gnns):
             gh = self.GCNLayers[layer](self.g, gh)
-            gh = self.Dropouts[layer](gh)
+            gh = self.Drop(gh)
             r = self.RELayers[layer](self.g, r, node_type)
         h = gh[seqs]
         r = r[seqs]

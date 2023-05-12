@@ -123,7 +123,6 @@ def run_model_DBLP(args):
 
     node_type = [i for i, z in zip(range(len(node_cnt)), node_cnt) for x in range(z)]
 
-    g = dgl.add_self_loop(g)
     g = g.to(device)
     train_seq = node_seq[train_idx]
     val_seq = node_seq[val_idx]
@@ -237,6 +236,7 @@ if __name__ == '__main__':
     ap.add_argument('--num-layers', type=int, default=2, help='The number of layers of HINormer layer')
     ap.add_argument('--num-gnns', type=int, default=4, help='The number of layers of both structural and heterogeneous encoder')
     ap.add_argument('--lr', type=float, default=1e-4)
+    ap.add_argument('--seed', type=int, default=2023)
     ap.add_argument('--dropout', type=float, default=0.5)
     ap.add_argument('--weight-decay', type=float, default=0)
     ap.add_argument('--len-seq', type=int, default=200, help='The length of node sequence.')
